@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding-top: 50px;
 }
 
 .App-logo {
@@ -28,6 +29,23 @@
   color: #61dafb;
 }
 
+.generate {
+  background-color: coral;
+  border: none;
+  color: white;
+  padding: 20px 40px;
+  text-align: center;
+  display: flex;
+  margin: 0 auto;
+}
+.quote {
+  margin: 10px 10px;
+  color: white;
+  background-color: cornflowerblue;
+  text-align: center;
+  padding: 10px;
+  display: flex;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quotes: [],
+      display: "Click the button to generate a quote!",
+    };
+  }
+
+  componentDidMount() {
+    fetch("https://type.fit/api/quotes")
+      .then((resp) => resp.json())
+      .then((data) => this.setState({ quotes: data }));
+    console.log(this.state.quotes);
+  }
+
+  handleClick() {
+    this.setState({
+      display: this.state.quotes[
+        Math.floor(Math.random() * this.state.quotes.length)
+      ].text,
+    });
+  }
+  render() {
+    return (
+      <div className="App">
+        <button className="generate" onClick={() => this.handleClick()}>
+          Generate
+        </button>
+        <div className="quote">{this.state.display}</div>
+      </div>
+    );
+  }
 }
 
 export default App;
